@@ -797,7 +797,7 @@ $$
 
 $$
 = \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - e^{-\frac{mT}{2}})^k
 I^2(\frac{T}{2}).
 $$
 
@@ -805,26 +805,26 @@ $$
 и $(\frac{T}{4}),$ получим
 $$
 I(T)\approx \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k \times
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - e^{-\frac{mT}{2}})^k \times
 $$
 $$
 \times[ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - 1)^k
+(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - e^{-\frac{mT}{2^2}})^k
 ]^2 I^{2^2}(\frac{T}{2^2}) \approx
 $$
 
 $$
  \approx \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k \times
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - e^{-\frac{mT}{2}})^k \times
 $$
 $$
 \times[ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - 1)^k
+(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - e^{-\frac{mT}{2^2}})^k
 ]^2 I^{2^2}(\frac{T}{2^2}) \times
 $$
 $$
 \times [ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
-(e^{-\frac{T}{2^3}(m+1)} - 1)^k (e^{-\frac{T}{2^3}} - 1)^k
+(e^{-\frac{T}{2^3}(m+1)} - 1)^k (e^{-\frac{T}{2^3}} - e^{-\frac{mT}{2^3}})^k
 ]^3 I^{2^3}(\frac{T}{2^3}).
 $$
 
@@ -835,7 +835,8 @@ $$
 \begin{equation}\label{eq:5}
 I(T)\approx \prod_{j=0}^{l-1}(
 \sum_{k=0}^{N}\frac{\lambda^{2k}}{2^k k!(m^2 - 1)^{k}}
-(e^{-\frac{T}{2^{j+1}}(m+1)} - 1)^k (e^{-\frac{T}{2^{j+1}}} - 1)^k
+(e^{-\frac{T}{2^{j+1}}(m+1)} - 1)^k
+(e^{-\frac{T}{2^{j+1}}} - e^{-\frac{mT}{2^{j+1}}})^k
 )^{2^j} I^{2^l}(\frac{T}{2^l}).
 \end{equation}
 
@@ -944,28 +945,42 @@ $$
 
 Используем (\ref{eq:5}) для вычисления интеграла $I(\frac{T}{2^l})$.
 Результаты вычислений по фурмуле (\ref{eq:5}) для
-различных значений $T$ при $\lambda=0.5,~m=1, N=5, l=5$
+различных значений $T$ при $\lambda=0.2,~m=2, N=5, l=5$
 приведены в следующей таблице:
+
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
 \hline
  T & 2 & 4 & 8 & 16 \\
 \hline
- точн.знач. & 0.867693 & 0.685718 & 0.416845 & 0.153354 \\
- по ф-ле (\ref{eq:5}) & 0.868138 & 0.684012 & 0.417032 & 0.153296 \\
+ точн.знач. & 0.996838 & 0.996675 & 0.996673 & 0.996672 \\
+ по ф-ле (\ref{eq:5}) & 0.993845 & 0.995421 & 0.996673 & 0.996672 \\
 \hline
 \end{tabular}
 \end{center}
 
-\noindent При $\lambda=0.9,~m=10, N=10, l=10$
+\noindent При $\lambda=0.5,~m=10, N=10, l=10$
 приведены в следующей таблице:
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
 \hline
  T & 2 & 4 & 8 & 16 \\
 \hline
- точн.знач. & 0.925936 & 0.853892 & 0.726185 & 0.525213 \\
- по ф-ле (\ref{eq:5}) & 0.925936 & 0.853892 & 0.726185 & 0.525213 \\
+ точн.знач. & 0.994460 & 0.994336 & 0.994333 & 0.994334 \\
+ по ф-ле (\ref{eq:5}) & 0.994459 & 0.994335 & 0.994333 & 0.994334 \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent При $\lambda=0.9,~m=15, N=15, l=15$
+приведены в следующей таблице:
+\begin{center}
+\begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
+\hline
+ T & 2 & 4 & 8 & 16 \\
+\hline
+ точн.знач. & 0.987685 & 0.987428 & 0.987423 & 0.987423 \\
+ по ф-ле (\ref{eq:5}) & 0.987435 & 0.987428 & 0.987423 & 0.987423 \\
 \hline
 \end{tabular}
 \end{center}
@@ -1021,16 +1036,22 @@ def test_approximation_prod(t, lambda, m, n, l)
 	}
 end
 
-# REAL FUNCTIONALITY
+# PROD FUNCTIONALITY
 # recursive factorial calculation
+def exp(x=1)
+  (Math.exp(x))
+end
+
 def factorial(n)
   (1..n).inject(:*) || 1.0
 end
 
 # exact exp_value
 def exp_integral_value(t, m)
-  e = (Math.exp(-m*t))
-  (2.0 / m)*(t + e / m - 1.0 / m)
+  e1 = exp(-2.0 * t)
+  e2 = exp(-t*(m + 1.0))
+  denominator = (m**2.0 - 1.0)
+  (2.0*e2 - e1*(m + 1.0) + m - 1.0) / denominator
 end
 
 # accurate value
@@ -1042,10 +1063,14 @@ end
 
 # under_sum value
 def under_sum(t, lambda, m, j, k)
-  numerator = ((-1.0)**k)*(lambda**(2.0*k))
-  denominator = (2.0**k)*factorial(k)*(m**(2.0*k))
-  e = Math.exp(-(m*t)/(2.0**(j+1.0)))
-  (numerator / denominator)*((1.0 - e)**(2.0*k))
+  numerator = lambda**(2.0*k)
+  denominator = (2.0**k) * factorial(k) * ((m**2.0 - 1.0)**k)
+  multiplier = numerator / denominator
+  degree = 2**(j + 1.0)
+  e1 = exp(-t / degree)
+  e2 = exp(-m*t / degree)
+  e3 = exp(-t*(m + 1.0) / degree)
+  multiplier * ((e1 - e2)**k) * ((e3 - 1.0)**k)
 end
 
 # sum value
@@ -1056,9 +1081,9 @@ def sum_value(t, lambda, m, n, j)
 end
 
 def approximation_prod(t, lambda, m, n, l)
-  (0...l).inject(1.0) { |prod, j|
-	prod*sum_value(t, lambda, m, n, j)**(2.0**j)
-	}
+  (0...l).inject(1.0) do |prod, j|
+    prod*sum_value(t, lambda, m, n, j)**(2.0**j)
+  end
 end
 
 # approximation
@@ -1076,15 +1101,26 @@ end
 def run_test(t, lambda, m, n, l)
   exact = exact_value(t, lambda, m)
   approx = approximation(t, lambda, m, n, l)
-  puts "Test with T: #{t}, lambda: #{lambda}, m: #{m}, N: #{n}, l: #{l}"
+  puts "Test with T:#{t}, lambda:#{lambda}, m:#{m}, N:#{n}, l:#{l}"
   puts "exact value: #{exact}"
   puts "approximation: #{approx}"
 end
 
-t_values = [2, 4, 8, 16]
+t_values = [
+  2,
+  4,
+  8,
+  16
+]
+
 t_values.each do |t|
-  run_test(t, 0.5, 1.0, 5, 5)
+  run_test(t, 0.5, 2.0, 5, 5)
 end
+
+t_values.each do |t|
+  run_test(t, 0.6, 6.0, 6, 6)
+end
+
 t_values.each do |t|
   run_test(t, 0.9, 10.0, 10, 10)
 end

@@ -1,14 +1,20 @@
 #!/usr/bin/ruby
 
 # recursive factorial calculation
+def exp(x=1)
+  (Math.exp(x))
+end
+
 def factorial(n)
   (1..n).inject(:*) || 1.0
 end
 
 # exact exp_value
 def exp_integral_value(t, m)
-  e = (Math.exp(-m*t))
-  (2.0 / m)*(t + e / m - 1.0 / m)
+  e1 = exp(-2.0 * t)
+  e2 = exp(-t*(m + 1.0))
+  denominator = (m**2.0 - 1.0)
+  (2.0*e2 - e1*(m + 1.0) + m - 1.0) / denominator
 end
 
 # accurate value
@@ -20,10 +26,14 @@ end
 
 # under_sum value
 def under_sum(t, lambda, m, j, k)
-  numerator = ((-1.0)**k)*(lambda**(2.0*k))
-  denominator = (2.0**k)*factorial(k)*(m**(2.0*k))
-  e = Math.exp(-(m*t)/(2.0**(j+1.0)))
-  (numerator / denominator)*((1.0 - e)**(2.0*k))
+  numerator = lambda**(2.0*k)
+  denominator = (2.0**k) * factorial(k) * ((m**2.0 - 1.0)**k)
+  multiplier = numerator / denominator
+  degree = 2**(j + 1.0)
+  e1 = exp(-t / degree)
+  e2 = exp(-m*t / degree)
+  e3 = exp(-t*(m + 1.0) / degree)
+  multiplier * ((e1 - e2)**k) * ((e3 - 1.0)**k)
 end
 
 # sum value
@@ -34,7 +44,9 @@ def sum_value(t, lambda, m, n, j)
 end
 
 def approximation_prod(t, lambda, m, n, l)
-  (0...l).inject(1.0) { |prod, j| prod*sum_value(t, lambda, m, n, j)**(2.0**j) }
+  (0...l).inject(1.0) do |prod, j|
+    prod*sum_value(t, lambda, m, n, j)**(2.0**j)
+  end
 end
 
 # approximation
@@ -57,10 +69,21 @@ def run_test(t, lambda, m, n, l)
   puts "approximation: #{approx}"
 end
 
-t_values = [2, 4, 8, 16]
+t_values = [
+  2,
+  4,
+  8,
+  16
+]
+
 t_values.each do |t|
-  run_test(t, 0.5, 1.0, 5, 5)
+  run_test(t, 0.2, 2.0, 5, 5)
 end
+
 t_values.each do |t|
-  run_test(t, 0.9, 10.0, 10, 10)
+  run_test(t, 0.5, 10.0, 10, 10)
+end
+
+t_values.each do |t|
+  run_test(t, 0.9, 15.0, 15, 15)
 end
