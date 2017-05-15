@@ -765,60 +765,182 @@ $$
 \times E_{[0,T/2]}[(e^{-\frac{mT}{2}}\int_{0}^{T/2}g(\tau)e^{-m\tau}d\tau)^k
 \exp\{i\lambda\int_{0}^{T/2}g(\tau)X_\tau d\tau\}]
 $$
-Для численных расчетов будем пологать $g(t) = 1,$ тогда
+Для численных расчетов будем пологать $g(t) = e^{-t},$ тогда имеем
 $$
-I(T)\approx  \sum_{k=0}^{N}\frac{(-1)^k\lambda^{2k}}{2^k k!m^{2k}}
-(1 - e^{-\frac{mT}{2}})^{2k} I^2(\frac{T}{2}).
-$$
-Проделав аналогичные вычисления для $(\frac{T}{2}),$ получим
-$$
-I(T)\approx \sum_{k=0}^{N}\frac{(-1)^k\lambda^{2k}}{2^k k!m^{2k}}
-(1 - e^{-\frac{mT}{2}})^{2k} \times
+I(T)\approx \sum_{k=0}^{N} \frac{(-1)^k\lambda^{2k}} {2^k k!} \times
 $$
 $$
-\times[\sum_{k=0}^{N}\frac{(-1)^k\lambda^{2k}}{2^k k!m^{2k}}
-(1 - e^{-\frac{mT}{2}})^{2k}]^2 I^4(\frac{T}{4}).
+E_{[0,T/2]}[(\int_{0}^{T/2}e^{-\tau}e^{m\tau}d\tau)^k] \times
 $$
-После $l$ шагов приходим к выражению
+$$
+E_{[0,T/2]}[(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau}e^{-m\tau}d\tau)^k]
+I^2(\frac{T}{2})=
+$$
+
+$$
+= \sum_{k=0}^{N} \frac{(-1)^k\lambda^{2k}} {2^k k!}
+E_{[0,T/2]}[(\int_{0}^{T/2}e^{\tau(m-1)}d\tau)^k] \times
+$$
+$$
+E_{[0,T/2]}[(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau(m+1)}d\tau)^k]
+I^2(\frac{T}{2}) =
+$$
+
+$$
+= \sum_{k=0}^{N} \frac{(-1)^k\lambda^{2k}} {2^k k!}
+(\frac{1}{m-1}(e^{\frac{T}{2}(m-1)} - 1))^k \times
+$$
+$$
+(\frac{-1}{m+1}(e^{-\frac{T}{2}(m+1)} - 1)) e^{-\frac{mT}{2}})^k
+\times I^2(\frac{T}{2}) =
+$$
+
+$$
+= \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k
+I^2(\frac{T}{2}).
+$$
+
+Проделав аналогичные вычисления для $(\frac{T}{2})$
+и $(\frac{T}{4}),$ получим
+$$
+I(T)\approx \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k \times
+$$
+$$
+\times[ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - 1)^k
+]^2 I^{2^2}(\frac{T}{2^2}) \approx
+$$
+
+$$
+ \approx \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2}(m+1)} - 1)^k (e^{-\frac{T}{2}} - 1)^k \times
+$$
+$$
+\times[ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2^2}(m+1)} - 1)^k (e^{-\frac{T}{2^2}} - 1)^k
+]^2 I^{2^2}(\frac{T}{2^2}) \times
+$$
+$$
+\times [ \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
+(e^{-\frac{T}{2^3}(m+1)} - 1)^k (e^{-\frac{T}{2^3}} - 1)^k
+]^3 I^{2^3}(\frac{T}{2^3}).
+$$
+
+\vspace{1cm}
+
+\noindent Проделав $l$ подобных итераций приходим к выражению
 
 \begin{equation}\label{eq:5}
 I(T)\approx \prod_{j=0}^{l-1}(
-\sum_{k=0}^{N}\frac{(-1)^k\lambda^{2k}}{2^k k!m^{2k}}
-(1 - e^{-\frac{mT}{2^{j+1}}})^{2k})^{2^j}
-I^{2^l}(\frac{T}{2^l}).
+\sum_{k=0}^{N}\frac{\lambda^{2k}}{2^k k!(m^2 - 1)^{k}}
+(e^{-\frac{T}{2^{j+1}}(m+1)} - 1)^k (e^{-\frac{T}{2^{j+1}}} - 1)^k
+)^{2^j} I^{2^l}(\frac{T}{2^l}).
 \end{equation}
 
+
 Вычислим точное значение интеграла $ I(T) = \exp\Big\{-\frac{\lambda^2}{4}
-\int_{0}^{T}\int_{0}^{T} e^{-m|t-s|}dtds\Big\}.$ \\
+\int_{0}^{T}\int_{0}^{T} e^{-t} e^{-s} e^{-m|t-s|}dtds\Big\}.$ \\
 Для этого вычислим сначала
 $$
-\int_{0}^{T}\int_{0}^{T} e^{-m|t-s|}dtds =
+\int_{0}^{T}\int_{0}^{T} e^{-t} e^{-s} e^{-m|t-s|}dtds =
+$$
+$$
+\int_{0}^{T}\int_{0}^{T} e^{-t -s -m|t-s|}dtds =
 $$
 $$
 \int_{0}^{T} \Big[
-\int_{0}^{s} e^{m(t-s)}dt + \int_{s}^{T} e^{-m(t-s)}dt
-\Big]ds =
+\int_{0}^{s} e^{-t -s + m(t-s)}dt + \int_{s}^{T} e^{-t -s -m(t-s)}dt
+\Big ]ds =
 $$
 $$
 \int_{0}^{T} \Big[
-e^{-ms}\int_{0}^{s} e^{mt}dt + e^{ms}\int_{s}^{T} e^{-mt}dt
-\Big]ds =
+\int_{0}^{s} e^{-t -s + m(t-s)}dt + \int_{s}^{T} e^{-t -s -m(t-s)}dt
+\Big ]ds =
 $$
 $$
-\frac{1}{m} \Big( \int_{0}^{T}(1-e^{-ms})ds -
-\int_{0}^{T}(e^{m(s-T)}-1)ds \Big) =
+\int_{0}^{T} \Big[
+\int_{0}^{s} e^{-s(m+1)} e^{t(m-1)} dt + \int_{s}^{T} e^{s(m-1)} e^{-t(m+1)} dt
+\Big ]ds =
 $$
 $$
-\frac{1}{m} \Big( 2T + \frac{1}{m}e^{-ms}\Big|_{0}^T -
-e^{-mT}\int_{0}^{T}e^{ms}ds \Big) =
+\int_{0}^{T} \Big[
+e^{-s(m+1)} \int_{0}^{s} e^{t(m-1)} dt +  e^{s(m-1)} \int_{s}^{T} e^{-t(m+1)} dt
+\Big ]ds =
 $$
 $$
-\frac{2}{m^2}(e^{-mT} - 1 + mT).
+\int_{0}^{T} \Big[
+e^{-s(m+1)} \frac{1}{m-1} e^{t(m-1)} \Big|_{0}^s +
+e^{s(m-1)} \frac{-1}{m+1}e^{-t(m+1)} \Big|_{s}^{T}
+\Big ]ds =
 $$
-Тогда имеем точное значение
 $$
-I(T) = \exp\{ -\frac{\lambda^2}{2m^2}(e^{-mT} - 1 + mT). \}
+\int_{0}^{T} \Big[
+e^{-s(m+1)} \frac{1}{m-1} (e^{s(m-1)} - 1) +
+e^{s(m-1)} \frac{-1}{m+1} (e^{-s(m+1)} - e^{-T(m+1)})
+\Big ]ds =
 $$
+$$
+\int_{0}^{T} \Big[
+\frac{-1}{m-1} e^{-s(m+1)} + \frac{1}{m-1} e^{-2s} +
+\frac{-1}{m+1} e^{s(m-1)} e^{-T(m+1)} + \frac{1}{m+1} e^{-2s)}
+\Big ]ds =
+$$
+$$
+\int_{0}^{T} \Big[
+\frac{2m}{m^2-1} e^{-2s} +\frac{-1}{m-1} e^{-s(m+1)} +
+\frac{-1}{m+1} e^{s(m-1)} e^{-T(m+1)}
+\Big ]ds =
+$$
+
+$$
+= \frac{2m}{m^2-1} (\frac{-1}{2} e^{-2s} \Big|_{0}^{T}) +
+\frac{-1}{m-1}( \frac{-1}{m+1} e^{-s(m+1) \Big|_{0}^{T}}) +
+$$
+$$
++ \frac{-1}{m+1} e^{-T(m+1)} (\frac{1}{m-1} e^{s(m-1)} \Big|_{0}^{T}) =
+$$
+
+$$
+= \frac{-m}{m^2-1} (e^{-2T} - 1) +
+\frac{1}{m^2-1} ( e^{-T(m+1)} - 1) +
+$$
+$$
++ \frac{-1}{m^2-1} e^{-T(m+1)} (e^{T(m-1)} - 1) =
+$$
+
+$$
+= \frac{-m}{m^2-1} e^{-2T} + \frac{m}{m^2-1} +
+\frac{1}{m^2-1} e^{-T(m+1)} - \frac{1}{m^2-1} -
+$$
+$$
+- \frac{1}{m^2-1} e^{-T(m+1)} e^{T(m-1)} + \frac{1}{m^2-1} e^{-T(m+1)} =
+$$
+
+$$
+= \frac{-m}{m^2-1} e^{-2T} + \frac{m}{m^2-1} +
+\frac{1}{m^2-1} e^{-T(m+1)} - \frac{1}{m^2-1} -
+$$
+$$
+- \frac{1}{m^2-1} e^{-2T} + \frac{1}{m^2-1} e^{-T(m+1)} =
+$$
+
+$$
+= \frac{1}{m^2-1}( -m e^{-2T} + m +
+e^{-T(m+1)} - 1 - e^{-2T} + e^{-T(m+1)} =
+$$
+$$
+= \frac{1}{m^2-1}( 2e^{-T(m+1)} - e^{-2T} (m + 1) + m - 1) =
+$$
+
+\noindent Тогда имеем точное значение
+$$
+I(T) = \exp\{ \frac{- \lambda^2}{4(m^2-1)}
+( 2e^{-T(m+1)} - e^{-2T} (m + 1) + m - 1) \}.
+$$
+
+\vspace{1cm}
 
 Используем (\ref{eq:5}) для вычисления интеграла $I(\frac{T}{2^l})$.
 Результаты вычислений по фурмуле (\ref{eq:5}) для
@@ -835,7 +957,7 @@ $$
 \end{tabular}
 \end{center}
 
-При $\lambda=0.9,~m=10, N=10, l=10$
+\noindent При $\lambda=0.9,~m=10, N=10, l=10$
 приведены в следующей таблице:
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
@@ -854,11 +976,13 @@ $$
 \begin{lstlisting}[language=Ruby]
 #!/usr/bin/ruby
 
+require 'fact'
+require 'permutations'
+require 'prod_value'
+
 #def factorial tests
-def test_factorial
-  factorial(3) == 6
-  factorial(1) == 1
-  factorial(0) == 1
+def test_factorial(n)
+  factorial(3) == f(x)
 end
 
 # test under_sum value
