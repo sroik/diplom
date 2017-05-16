@@ -8,14 +8,16 @@
 \usepackage{graphics}
 \usepackage{array}
 \usepackage{multirow}
-\usepackage{listings} % for ruby
-\lstloadlanguages{Ruby} % for ruby
 \usepackage[unicode]{hyperref}
+
 \voffset=-14mm
 \textheight=23cm
 \linespread{1.3}
 \oddsidemargin=5mm
 \textwidth=16cm
+
+\usepackage{listings}
+\lstloadlanguages{Python}
 
 \begin {document}
 
@@ -727,7 +729,7 @@ $$
 
 \chapter{Численные результаты}
 
-Интеграл по гауссовой мере с нулевым средним и корреляционной функцией
+В качестве численного примера рассмотрим вычисление математического ожидания фукционала $ \exp\{i\lambda\int_{0}^{T}g(\tau)X_\tau d\tau\} $ от гауссовского процесса с нулевым средним и корреляционной функцией
 $B(t,\tau) = \frac{1}{2}\exp(-m|t-\tau|)$
 по пространству функций $X=X[0, T]:$
 $$
@@ -770,19 +772,19 @@ $$
 I(T)\approx \sum_{k=0}^{N} \frac{(-1)^k\lambda^{2k}} {2^k k!} \times
 $$
 $$
-E_{[0,T/2]}[(\int_{0}^{T/2}e^{-\tau}e^{m\tau}d\tau)^k] \times
+(\int_{0}^{T/2}e^{-\tau}e^{m\tau}d\tau)^k \times
 $$
 $$
-E_{[0,T/2]}[(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau}e^{-m\tau}d\tau)^k]
+(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau}e^{-m\tau}d\tau)^k
 I^2(\frac{T}{2})=
 $$
 
 $$
 = \sum_{k=0}^{N} \frac{(-1)^k\lambda^{2k}} {2^k k!}
-E_{[0,T/2]}[(\int_{0}^{T/2}e^{\tau(m-1)}d\tau)^k] \times
+(\int_{0}^{T/2}e^{\tau(m-1)}d\tau)^k \times
 $$
 $$
-E_{[0,T/2]}[(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau(m+1)}d\tau)^k]
+(e^{-\frac{mT}{2}}\int_{0}^{T/2}e^{-\tau(m+1)}d\tau)^k
 I^2(\frac{T}{2}) =
 $$
 
@@ -791,7 +793,7 @@ $$
 (\frac{1}{m-1}(e^{\frac{T}{2}(m-1)} - 1))^k \times
 $$
 $$
-(\frac{-1}{m+1}(e^{-\frac{T}{2}(m+1)} - 1)) e^{-\frac{mT}{2}})^k
+(\frac{-1}{m+1}(e^{-\frac{T}{2}(m+1)} - 1) e^{-\frac{mT}{2}})^k
 \times I^2(\frac{T}{2}) =
 $$
 
@@ -954,7 +956,7 @@ $$
  T & 2 & 4 & 8 & 16 \\
 \hline
  точн.знач. & 0.996838 & 0.996675 & 0.996673 & 0.996672 \\
- по ф-ле (\ref{eq:5}) & 0.993845 & 0.995421 & 0.996673 & 0.996672 \\
+ по ф-ле (\ref{eq:5}) & 0.996845 & 0.996682 & 0.995625 & 0.953672 \\
 \hline
 \end{tabular}
 \end{center}
@@ -967,7 +969,7 @@ $$
  T & 2 & 4 & 8 & 16 \\
 \hline
  точн.знач. & 0.994460 & 0.994336 & 0.994333 & 0.994334 \\
- по ф-ле (\ref{eq:5}) & 0.994459 & 0.994335 & 0.994333 & 0.994334 \\
+ по ф-ле (\ref{eq:5}) & 0.994460 & 0.994335 & 0.994332 & 0.994312 \\
 \hline
 \end{tabular}
 \end{center}
@@ -980,150 +982,188 @@ $$
  T & 2 & 4 & 8 & 16 \\
 \hline
  точн.знач. & 0.987685 & 0.987428 & 0.987423 & 0.987423 \\
- по ф-ле (\ref{eq:5}) & 0.987435 & 0.987428 & 0.987423 & 0.987423 \\
+ по ф-ле (\ref{eq:5}) & 0.987685 & 0.987428 & 0.987422 & 0.987422 \\
 \hline
 \end{tabular}
+\end{center}
+
+\vspace{5mm}
+
+На следующих графиках отображена зависимость погрешности от количества итераций при изменениях параметров $l$ и $N$.
+
+\noindent При $T=16, \lambda=0.5,~m=3, ~N=5, ~l=1...25$ имеем:
+\begin{center}
+\includegraphics{l_dependency.png}
+\end{center}
+
+\noindent При $T=16, \lambda=0.5,~m=3, ~l=2, ~N=1...40$ имеем:
+\begin{center}
+\includegraphics{n_dependency.png}
 \end{center}
 
 \chapter*{Приложение 1. Листинг программы}
 \addcontentsline{toc}{chapter}{Приложение 1. Листинг программы}
 
-\begin{lstlisting}[language=Ruby]
-#!/usr/bin/ruby
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python
 
-require 'fact'
-require 'permutations'
-require 'prod_value'
+from math import factorial
+from math import exp
+from functools import reduce
 
-#def factorial tests
-def test_factorial(n)
-  factorial(3) == f(x)
-end
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plot
 
-# test under_sum value
-def test_under_sum(t, lambda, m, j, k)
-  numerator = ((-1.0)**k)*(lambda**(2.0*k))
-  denominator = (2.0**k)*factorial(k)*(m**(2.0*k))
-	e = Math.exp(-(m*t)/(2.0**(j+1.0)))
-  (numerator / denominator)*((1.0 - e)**(2.0*k))
-end
 
-# test accurate value
-def exact_value(t, l, m)
-  multiplier = -(l**2.0) / 4.0
-  inside = multiplier * exp_integral_value(t, m)
-  Math.exp(inside)
-end
+# exact integral value
+def integral_value(t, m):
+    e1 = exp(-2. * t)
+    e2 = exp(-t * (m + 1.))
+    denominator = (m ** 2. - 1.)
+    return (2.0 * e2 - e1 * (m + 1.) + m - 1.) / denominator
 
-# test approximation using prod formula
-def approximation(t, lambda, m, n, l)
-  prod = approximation_prod(t, lambda, m, n, l)
-  exact_t = t / (2.0**l)
-  exact = exact_value(exact_t, lambda, m)**(2.0**l)
-  prod * exact
-end
-
-# test sum value
-def test_sum_value(t, lambda, m, n, j)
-  (0..n).inject(0) { |sum, k|
-	  sum + under_sum(t, lambda, m, j, k)
-	}
-end
-
-def test_approximation_prod(t, lambda, m, n, l)
-  (0...l).inject(1.0) { |prod, j|
-	prod*sum_value(t, lambda, m, n, j)**(2.0**j)
-	}
-end
-
-# PROD FUNCTIONALITY
-# recursive factorial calculation
-def exp(x=1)
-  (Math.exp(x))
-end
-
-def factorial(n)
-  (1..n).inject(:*) || 1.0
-end
-
-# exact exp_value
-def exp_integral_value(t, m)
-  e1 = exp(-2.0 * t)
-  e2 = exp(-t*(m + 1.0))
-  denominator = (m**2.0 - 1.0)
-  (2.0*e2 - e1*(m + 1.0) + m - 1.0) / denominator
-end
 
 # accurate value
-def exact_value(t, l, m)
-  multiplier = -(l**2.0) / 4.0
-  inside = multiplier * exp_integral_value(t, m)
-  Math.exp(inside)
-end
+def exact_value(t, lam, m):
+    multiplier = -(lam ** 2.0) / 4.0
+    inside = multiplier * integral_value(t, m)
+    result = exp(inside)
+    return result
 
-# under_sum value
-def under_sum(t, lambda, m, j, k)
-  numerator = lambda**(2.0*k)
-  denominator = (2.0**k) * factorial(k) * ((m**2.0 - 1.0)**k)
-  multiplier = numerator / denominator
-  degree = 2**(j + 1.0)
-  e1 = exp(-t / degree)
-  e2 = exp(-m*t / degree)
-  e3 = exp(-t*(m + 1.0) / degree)
-  multiplier * ((e1 - e2)**k) * ((e3 - 1.0)**k)
-end
 
-# sum value
-def sum_value(t, lambda, m, n, j)
-  (0..n).inject(0) { |sum, k|
-    sum + under_sum(t, lambda, m, j, k)
-  }
-end
+# APPROXIMATION
+# under sum value calculation
+def under_sum(t, lam, m, j: int, k: int):
+    numerator = lam ** (2. * k)
+    denominator = (2. ** k) * factorial(k) *
+    ((m ** 2.0 - 1.0) ** k)
+    degree = 2 ** (j + 1)
+    e1 = exp(-(m + 1.) * t / degree)
+    e2 = exp(-t / degree)
+    e3 = exp(-m * t / degree)
+    return (numerator / denominator) * (e1 - 1.) **
+    k * (e2 - e3) ** k
 
-def approximation_prod(t, lambda, m, n, l)
-  (0...l).inject(1.0) do |prod, j|
-    prod*sum_value(t, lambda, m, n, j)**(2.0**j)
-  end
-end
+
+def sum_value(t, lam, m, n: int, j: int):
+    f = lambda s, k: s + under_sum(t, lam, m, j, k)
+    result = reduce(f, range(0, n + 1), 0)
+    return result
+
+
+def prod_value(t, lam, m, n: int, l: int):
+    f = lambda p, j: p * sum_value(t, lam, m, n, j) ** (2. ** j)
+    result = reduce(f, range(0, l), 1.)
+    return result
+
 
 # approximation
 # using prod formula
-def approximation(t, lambda, m, n, l)
-  prod = approximation_prod(t, lambda, m, n, l)
-  exact_t = t / (2.0**l)
-  exact = exact_value(exact_t, lambda, m)**(2.0**l)
-  prod * exact
-end
+def approximation(t: float, lam, m, n, l):
+    prod = prod_value(t, lam, m, n, l)
+    exact_t = t / (2. ** l)
+    exact = exact_value(exact_t, lam, m) ** (2. ** l)
+    return prod * exact
 
-####
+
+# TESTS
 # tests running
-####
-def run_test(t, lambda, m, n, l)
-  exact = exact_value(t, lambda, m)
-  approx = approximation(t, lambda, m, n, l)
-  puts "Test with T:#{t}, lambda:#{lambda}, m:#{m}, N:#{n}, l:#{l}"
-  puts "exact value: #{exact}"
-  puts "approximation: #{approx}"
-end
+def run_test(t, lam, m, n: int, l: int):
+    exact = exact_value(t, lam, m)
+    approx = approximation(t, lam, m, n, l)
+    test_format = "Test with T: %s, lambda: %s, m: %s, N: %s, l: %s"
+    print(test_format % (t, lam, m, n, l))
+    print("exact value: %.6f" % exact)
+    print("approximation: %.6f" % approx)
 
-t_values = [
-  2,
-  4,
-  8,
-  16
-]
 
-t_values.each do |t|
-  run_test(t, 0.5, 2.0, 5, 5)
-end
+def test():
+    t_values = [
+        2.,
+        4.,
+        8.,
+        16.
+    ]
 
-t_values.each do |t|
-  run_test(t, 0.6, 6.0, 6, 6)
-end
+    for value in t_values:
+        run_test(value, 0.2, 2.0, 5, 5)
 
-t_values.each do |t|
-  run_test(t, 0.9, 10.0, 10, 10)
-end
+    for t in t_values:
+        run_test(t, 0.5, 10.0, 10, 10)
+
+    for t in t_values:
+        run_test(t, 0.9, 15.0, 15, 15)
+
+
+def plot_l_dependency():
+    n = 5
+    m = 3
+    t = 16
+    lam = 0.5
+    exact = exact_value(t, lam, m)
+
+    l_array = range(1, 25)
+    values = [approximation(t, lam, m, n, l) for l in l_array]
+    exact_values = [exact for l in l_array]
+
+    approx_patch = mpatches.Patch(color='red',
+    label='Approximation')
+    exact_patch = mpatches.Patch(color='black',
+    label='Exact value')
+    plot.legend(handles=[approx_patch, exact_patch])
+
+    plot.plot(l_array, values, 'r', l_array, values, 'ro')
+    plot.plot(l_array, exact_values, 'k', l_array,
+    exact_values, 'ko')
+    plot.xlabel('l')
+    plot.ylabel('I(T)')
+    plot.savefig('l_dependency.png')
+    plot.show()
+
+    # linear
+    plot.subplot(221)
+    plot.plot(x, y)
+    plot.yscale('linear')
+    plot.title('linear')
+    plot.grid(True)
+
+    # log
+    plot.subplot(222)
+    plot.plot(x, y)
+    plot.yscale('log')
+    plot.title('log')
+    plot.grid(False)
+
+
+def plot_n_dependency():
+    l = 2
+    m = 3
+    t = 16
+    lam = 0.5
+    exact = exact_value(t, lam, m)
+
+    n_array = range(1, 40)
+    values = [approximation(t, lam, m, n, l) for l in n_array]
+    exact_values = [exact for n in n_array]
+
+    approx_patch = mpatches.Patch(color='red',
+    label='Approximation')
+    exact_patch = mpatches.Patch(color='black',
+    label='Exact value')
+    plot.legend(handles=[approx_patch, exact_patch])
+
+    plot.plot(n_array, values, 'r', n_array, values, 'ro')
+    plot.plot(n_array, exact_values, 'k', n_array,
+    exact_values, 'ko')
+    plot.xlabel('l')
+    plot.ylabel('I(T)')
+    plot.savefig('n_dependency.png')
+    plot.show()
+
+
+test()
+# plot_l_dependency()
+# plot_n_dependency()
 
 \end{lstlisting}
 
