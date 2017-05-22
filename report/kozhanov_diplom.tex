@@ -1,6 +1,6 @@
 % !TEX root = ./kozhanov_diplom.tex
 
-\documentclass [12pt]{report}
+\documentclass [a4paper, 12pt]{report}
 \usepackage [utf8]{inputenc}
 \usepackage[T2A]{fontenc}
 \usepackage [russianb] {babel}
@@ -52,7 +52,7 @@
 \bigskip
 
 \begin{center}
-	{\bf ПРИБЛИЖЕННОЕ ВЫЧИСЛЕНИЕ МАТЕМАТИЧЕСКОГО ОЖИДАНИЯ ФУНКЦИОНАЛОВ ОТ ГАУССОВСКОГО ПРОЦЕССА, ОСНОВАННЫХ НА ИНТЕРПОЛЯЦИИ КОРРЕЛЯЦИОННОЙ ФУНКЦИИ}
+	{\bf ПРИБЛИЖЕННОЕ ВЫЧИСЛЕНИЕ МАТЕМАТИЧЕСКОГО ОЖИДАНИЯ ФУНКЦИОНАЛОВ ОТ ГАУССОВСКОГО ПРОЦЕССА, ОСНОВАННОЕ НА ИНТЕРПОЛЯЦИИ КОРРЕЛЯЦИОННОЙ ФУНКЦИИ}
 \end{center}
 \bigskip
 \bigskip
@@ -85,7 +85,7 @@
 
 \end{tabular}
 
-\vspace{\stretch{1}}
+\vspace{\stretch{1.5}}
 \bigskip
 \bigskip
 \bigskip
@@ -94,14 +94,13 @@
 	\bf{Минск 2017}
 \end{center}
 
-
 \newpage
 
 \begin{center}
 	\textbf{РЕФЕРАТ}
 \end{center}
 
-\emph{\textbf{Димпломная работа}}, 20 стр.,2 табл., 1 приложение, 5 источников.
+\emph{\textbf{Димпломная работа}}, 30 стр., 2 рис., 3 табл., 1 приложение, 5 источников.
 
 \emph{\textbf{Ключевые слова:}} ГАУССОВСКИЕ ПРОЦЕССЫ, ФОРМУЛА ИНТЕРПОЛЯЦИИ, АПРОКСИМАЦИЯ МАТЕМАТИЧЕСКИХ ОЖИДАНИЙ, МАТЕМАТИЧЕСКОЕ ОЖИДАНИЕ, ФУНКЦИОНАЛЫ ОТ ПРОЦЕССА.
 
@@ -122,7 +121,7 @@
 	\textbf{РЭФЕРАТ}
 \end{center}
 
-\emph{\textbf{Дыпломная праца}}, 20 c., 2 табл., 1 дадатак, 5 крыниц.
+\emph{\textbf{Дыпломная праца}}, 30 c., 2 мал., 3 табл., 1 дадатак, 5 крыниц.
 
 \emph{\textbf{Ключавыя словы:}}
 ГАУСЫВЫ ПРАЦЭСЫ, ФОРМУЛА ІНТЭРПАЛЯЦЫ, МАТЭМАТЫЧНАЕ ЧАКАННЕ, ФУНКЦЫЯНАЛЫ АД ПРАЦЭСУ.
@@ -141,9 +140,9 @@
 	\textbf{ABSTRACT}
 \end{center}
 
-\emph{\textbf{Graduation assignment}}, 2 p., 2 tables, 1 app, 5 sources.
+\emph{\textbf{Graduation assignment}}, 30 p., 2 pic., 3 tables, 1 app, 5 sources.
 
-\emph{\textbf{Keywords:}} GAUSSIAN PROCESSES, INTERPOLATION FORMULA , MATHEMATICAL EXPECTATION, FUNCTIONALS.
+\emph{\textbf{Keywords:}} GAUSSIAN PROCESSES, INTERPOLATION FORMULA,\\ MATHEMATICAL EXPECTATION, FUNCTIONALS.
 
 \emph{\textbf{Research object}} -- mathematical expectation from gaussian processes.
 
@@ -165,7 +164,9 @@
 
 Применение приближенных формул к вычислению математических ожиданий
 функционалов от гауссовских процессов вида
-$ f(x) = \exp\{-\int_{0}^{T}V(x(t))dt\} $
+$$
+f(x) = \exp\{-\int_{0}^{T}V(x(t))dt\}
+$$
 сильно зависит от величины $T. $ Имеющиеся в литературе приближенные формулы
 теряют свою эффективность при $T > 1.$
 В данной работе рассматривается метод преобразования
@@ -173,8 +174,12 @@ $ f(x) = \exp\{-\int_{0}^{T}V(x(t))dt\} $
 к математическим ожиданиям от гауссовских процессов, заданных на
 промежутках меньшей длины.
 
-Семейство $S$-значных случайных величин $X=(X_t)=(X_t(\omega)), \, t\in [0,T], \, \omega\in \Omega,$ назывется $S$-
-\emph{значным случайным процессом}, где $(\Omega,\mathcal{F},P)-$ вероятностное пространство, а $S$ называется
+Семейство $S$-значных случайных величин
+$$
+X=(X_t)=(X_t(\omega)), \, t\in [0,T], \, \omega\in \Omega,
+$$
+назывется $S$-\emph{значным случайным процессом},
+где $(\Omega,\mathcal{F},P)-$ вероятностное пространство, а $S$ называется
  \emph{фазовым пространством
 процесса} $X.$ Если $S=\mathbb{R}^n,$ то процесс называется
 $n$-мерным, а если $n=1,$ то процесс называется действительным
@@ -208,7 +213,7 @@ $\omega\in \Omega$ называется выборочной функцией и
 свойством.
 
 Далее в работе рассматривается гауссовский случайный процесс, функция распределения которого задается плотностью.
-Плотность конечномерного распределения гауссовского процесса задаётся равенством:
+Плотность конечномерного распределения гауссовского процесса задаётся равенством (см.\cite{lecture})
 $$p_{t_1,...,t_n}(u)=
 (2\pi)^{-n/2}(\det B)^{-1/2}\exp\Big\{-\frac{1}{2}(B^{-1}(u-m),u-m)\Big\},$$
 где $\,B$ -- матрица с элементами $\, b_{ij}=B(t_i,t_j), \,\,i,j=1...n;$
@@ -269,7 +274,7 @@ $$\int\limits_R \exp\{au^2+bu\}du=
 Можно показать, что функционал $\langle\xi,X\rangle$ является гауссовской
 случайной величиной. Среднее значение и дисперсию этой величины
 можно вычислить с помощью характеристического функционала гауссовского
-процесса, определяемого равенством
+процесса, определяемого равенством (см.\cite{lecture})
 $$\chi_X(\xi)=E\Big[\exp\Big\{i\langle\xi,X\rangle\Big\}\Big].$$
 Используя аппроксимацию (\ref{eq:13}), можно показать, что
 \begin{equation}\label{eq:14}
@@ -301,14 +306,14 @@ i \sum\limits_{j=1}^n \lambda_j\int\limits_0^T m(t)d\xi_j(t)-$$
 B(t,s)d\xi_k(t)d\xi_j(s)\Big\},
 \end{equation}
 из которого следует, что характеристическая функция случайного вектора
-$\,(\langle\xi_1,X\rangle,\ldots,\langle\xi_n,X\rangle)\,$
+$$\,(\langle\xi_1,X\rangle,\ldots,\langle\xi_n,X\rangle)\,$$
 является х. ф. гауссовского случайного вектора,
 имеющеющего вектор среднего значения и матрицу ковариации с элементами
 $$m(\xi_j)=\int\limits_0^T m(t)d\xi_j(t),\quad
 K(\xi_k,\xi_j)=\int\limits_0^T\int\limits_0^T
 B(t,s)d\xi_k(t)d\xi_j(s). $$
 Отсюда следует, что плотность распределения случайного вектора
-$\,(\langle\xi_1,X\rangle,\ldots,\langle\xi_n,X\rangle)\,$
+$$\,(\langle\xi_1,X\rangle,\ldots,\langle\xi_n,X\rangle)\,$$
 имеет вид
 $$p_{\xi_1,...,\xi_n}(u)=
 (2\pi)^{-n/2}(\det K)^{-1/2}\exp\Big\{-\frac{1}{2}(K^{-1}(u-m),u-m)\Big\},$$
@@ -643,20 +648,21 @@ $$
 dt_2ds_2du_1du_2.
 $$
 Продолжая этот процесс итерации $N$ раз, приходим к формуле
-\begin{equation}\label{eq:3}
-\begin{split}
-E[f(X_{(\cdot)})] = \sum_{k=0}^{N}\frac{1}{2^{k}k!}\int_{0}^{T}\stackrel{(2k)}{\cdots}\int_{0}^{T}
+\begin{equation}
+  \begin{gathered}
+E[f(X_{(\cdot)})] = \sum_{k=0}^{N}\frac{1}{2^{k}k!}
+\int_{0}^{T}\stackrel{(2k)}{\cdots}\int_{0}^{T}
 \prod_{j=1}^{k}(B-B_0)(t_j, \tau_j)\times \\
 \times E[F^{(2k)}(X_{(\cdot)};t,\tau)]d^ktd^k\tau + r_N(F(X_{(\cdot)})),
-\end{split}
+\end{gathered}\label{eq:3}
 \end{equation}
 где $r_N(F(X_{(\cdot)})) -$ остаток, $t=(t_1,t_2,...,t_k),~ \tau=(\tau_1, \tau_2,...,\tau_k).$
 
 \pagebreak
-
 \chapter{Описание метода апроксимации функционалов от гауссовского процесса, основанного на формуле интерполяции}
 
-Имеет место соотношение
+Имеет место соотношение, являющееся основным для построения метода
+апроксимации (см.\cite{b1})
 \begin{equation}
 E_0[F_{[0,T/2]}(X_{(\cdot)})G_{[T/2,T]}(X_{(\cdot)})]=
 E[F_{[0,T/2]}(X_{(\cdot)})]E[G_{[T/2,T]}(X_{(\cdot)})],
@@ -664,8 +670,9 @@ E[F_{[0,T/2]}(X_{(\cdot)})]E[G_{[T/2,T]}(X_{(\cdot)})],
 \end{equation}
 где $F_{[0,T/2]}(X_{(\cdot)}), G_{[T/2,T]}(X_{(\cdot)}) - $
 функционалы, зависящие от траекторий процесса $X_t$ на
-отрезках $[0,T/2]$ и $[T/2, T]$ соответственно.
+отрезках $[0,T/2]$ и $[T/2, T]$ соответственно. \\
 
+Данный раздел посвящен  доказательству частного случая этой формулы.
 Приведем пример, который нам понадобится в последующем. Пусть
 $$
 F_{[0,T/2]}(X_{(\cdot)}) = \exp\{\int_{0}^{T/2}f(\tau)X_{\tau}d\tau\},
@@ -707,21 +714,25 @@ $$
 $$
 $$
 \times \exp\{\frac{1}{2}\int_{T/2}^{T}\int_{0}^{T/2}B(\tau_1\tau_2)
-\hat{f}(\tau_1)\hat{g}(\tau_2)d\tau_1\tau_2\} =
+\hat{f}(\tau_1)\hat{g}(\tau_2)d\tau_1\tau_2\}.
 $$
-$\big[~$воспользуемся тем, что
+поскольку имеют место равенства (см. \cite{b1})
 $$
 \frac{1}{2}\int_{0}^{T/2}\int_{T/2}^{T}B(\tau_1\tau_2)
 \hat{f}(\tau_1)\hat{g}(\tau_2)d\tau_1\tau_2 = 0,
 $$
 $$
 \frac{1}{2}\int_{T/2}^{T}\int_{0}^{T/2}B(\tau_1\tau_2)
-\hat{f}(\tau_1)\hat{g}(\tau_2)d\tau_1\tau_2 = 0 ~\big]
+\hat{f}(\tau_1)\hat{g}(\tau_2)d\tau_1\tau_2 = 0
+$$
+имеем
+$$
+E_0[F_{[0,T/2]}(X_{(\cdot)})G_{[T/2,T]}(X_{(\cdot)})]=
+\exp\{\frac{1}{2}\int_{0}^{T/2}\int_{0}^{T/2}B(\tau_1\tau_2)
+f(\tau_1)f(\tau_2)d\tau_1\tau_2\} \times
 $$
 $$
-= \exp\{\frac{1}{2}\int_{0}^{T/2}\int_{0}^{T/2}B(\tau_1\tau_2)
-f(\tau_1)f(\tau_2)d\tau_1\tau_2\}
-\exp\{\frac{1}{2}\int_{T/2}^{T}\int_{T/2}^{T}B(\tau_1\tau_2)
+\times \exp\{\frac{1}{2}\int_{T/2}^{T}\int_{T/2}^{T}B(\tau_1\tau_2)
 g(\tau_1)g(\tau_2)d\tau_1\tau_2\} =
 $$
 $$
@@ -734,33 +745,38 @@ $$
 
 \chapter{Численные результаты}
 
-В качестве численного примера рассмотрим вычисление математического ожидания фукционала $ \exp\{i\lambda\int_{0}^{T}g(\tau)X_\tau d\tau\} $ от гауссовского процесса с нулевым средним и корреляционной функцией
-$B(t,\tau) = \frac{1}{2}\exp(-m|t-\tau|)$
-по пространству функций $X=X[0, T]:$
+В качестве численного примера рассмотрим вычисление математического ожидания фукционала
+$$
+\exp\{i\lambda\int_{0}^{T}g(\tau)X_\tau d\tau\}
+$$
+от гауссовского процесса с нулевым средним и корреляционной функцией
+$$ B(t,\tau) = \frac{1}{2}\exp(-m|t-\tau|) $$
+по пространству функций
+$$ X=X[0, T]. $$
+
+\section{Апроксимация, основанная на интерполяции корреляционной
+функции}
+
 $$
 I\equiv I(T) =
 E_{[0,T]}[\exp\{i\lambda\int_{0}^{T}g(\tau)X_\tau d\tau\}] =
 $$
 $$
-\exp\Big\{-\frac{\lambda^2}{2}\int\limits_0^T\int\limits_0^T
+= \exp\Big\{-\frac{\lambda^2}{2}\int\limits_0^T\int\limits_0^T
 B(t,s)d\xi(t)d\xi(s)\Big\} =
 $$
 $$
-\exp\Big\{-\frac{\lambda^2}{2}\int\limits_0^T\int\limits_0^T
+= \exp\Big\{-\frac{\lambda^2}{2}\int\limits_0^T\int\limits_0^T
 B(t,s)g(t)g(s)dtds\Big\} =
 $$
 $$
-\exp\Big\{-\frac{\lambda^2}{4}\int\limits_0^T\int\limits_0^T
+= \exp\Big\{-\frac{\lambda^2}{4}\int\limits_0^T\int\limits_0^T
 \exp(-m|t-s|)g(t)g(s)dtds\Big\}.
 $$
 
-В рассматриваемом случае
-$$
-(<\xi,X>)'(t)= g(t),
-$$
-поскольку имеет место равенство
-$<\xi, X> = i\lambda\int_{0}^{T}g(\tau)X_\tau d\tau , $
-имеем $ (<\xi,X>)^{(n)}(t)= 0,$ при $ n > 1. $
+Пользуясь формулой преобразования математического ожидания при
+интерполяции корреляционной функции (\ref{eq:3}) и
+соотношением (\ref{eq:4}), имеем
 $$
 I(T)\approx \sum_{k=0}^{N}\frac{1}{2^k k!}(i\lambda)^{2k}\times
 $$
@@ -808,7 +824,7 @@ $$
 I^2(\frac{T}{2}).
 $$
 
-Проделав аналогичные вычисления для $(\frac{T}{2})$
+\noindent Проделав аналогичные вычисления для $(\frac{T}{2})$
 и $(\frac{T}{4}),$ получим
 $$
 I(T)\approx \sum_{k=0}^{N} \frac{\lambda^{2k}} {2^k k! (m^2 - 1)^k}
@@ -847,9 +863,13 @@ I(T)\approx \prod_{j=0}^{l-1}(
 )^{2^j} I^{2^l}(\frac{T}{2^l}).
 \end{equation}
 
+\section{Точное значение}
 
-Вычислим точное значение интеграла $ I(T) = \exp\Big\{-\frac{\lambda^2}{4}
-\int_{0}^{T}\int_{0}^{T} e^{-t} e^{-s} e^{-m|t-s|}dtds\Big\}.$ \\
+Вычислим точное значение интеграла
+$$
+I(T) = \exp\Big\{-\frac{\lambda^2}{4}
+\int_{0}^{T}\int_{0}^{T} e^{-t} e^{-s} e^{-m|t-s|}dtds\Big\}.
+$$
 Для этого вычислим сначала
 $$
 \int_{0}^{T}\int_{0}^{T} e^{-t} e^{-s} e^{-m|t-s|}dtds =
@@ -943,18 +963,19 @@ $$
 $$
 
 \noindent Тогда имеем точное значение
-$$
+\begin{equation} \label{eq:10}
 I(T) = \exp\{ \frac{- \lambda^2}{4(m^2-1)}
 ( 2e^{-T(m+1)} - e^{-2T} (m + 1) + m - 1) \}.
-$$
+\end{equation}
 
-\vspace{1cm}
+\section{Результаты}
+\qquad
 
-Используем (\ref{eq:5}) для вычисления интеграла $I(\frac{T}{2^l})$.
-Результаты вычислений по фурмуле (\ref{eq:5}) для
-различных значений $T$ при $\lambda=0.2,~m=2, N=5, l=5$
-приведены в следующей таблице:
+Используем формулу апроксимации (\ref{eq:5}) для вычисления интеграла $I(T)$ и сравним с точными результатами вычисленными по формуле (\ref{eq:10}).
 
+\begin{table}
+\caption{Результаты вычислений по формуле (\ref{eq:5}) для
+различных значений $T$ при $\lambda=0.2,~m=2, N=5, l=5$}
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
 \hline
@@ -965,9 +986,11 @@ $$
 \hline
 \end{tabular}
 \end{center}
+\end{table}
 
-\noindent При $\lambda=0.5,~m=10, N=10, l=10$
-приведены в следующей таблице:
+\begin{table}
+\caption{Результаты вычислений по формуле (\ref{eq:5}) для
+различных значений $T$ при $\lambda=0.5,~m=10, N=10, l=10$}
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
 \hline
@@ -978,9 +1001,11 @@ $$
 \hline
 \end{tabular}
 \end{center}
+\end{table}
 
-\noindent При $\lambda=0.9,~m=15, N=15, l=15$
-приведены в следующей таблице:
+\begin{table}
+\caption{Результаты вычислений по формуле (\ref{eq:5}) для
+различных значений $T$ при $\lambda=0.9,~m=15, N=15, l=15$}
 \begin{center}
 \begin{tabular}{ | m{3cm} | m{2cm}| m{2cm} | m{2cm} | m{2cm} | }
 \hline
@@ -991,20 +1016,31 @@ $$
 \hline
 \end{tabular}
 \end{center}
+\end{table}
 
-\vspace{5mm}
-
-На следующих графиках отображена зависимость погрешности от количества итераций при изменениях параметров $l$ и $N$.
-
-\noindent При $T=16, \lambda=0.5,~m=3, ~N=5, ~l=1...25$ имеем:
+\begin{figure}
 \begin{center}
 \includegraphics{l_dependency.png}
 \end{center}
+\caption{Зависимость погрешности от количества
+итераций при $T=16, \lambda=0.5,~m=3, ~N=5, ~l=1...25$}
+\end{figure}
 
-\noindent При $T=16, \lambda=0.5,~m=3, ~l=2, ~N=1...40$ имеем:
+\begin{figure}
 \begin{center}
 \includegraphics{n_dependency.png}
 \end{center}
+\caption{Зависимость погрешности от количества
+итераций при $T=16, \lambda=0.5,~m=3, ~l=2, ~N=1...40$}
+\end{figure}
+
+\chapter*{Заключение}
+В данной работе:
+\begin{itemize}
+\item Рассматривается метод приближенного вычисления математического ожидания функционалов от гауссовского процесса, основанный на интерполяции корреляционной функции.
+\item Получена приближенная формула для вычисления математического ожидания функционала специального вида, представляющего собой экспоненту от линейного функционала от процесса.
+\item Проведены численные исследования, иллюстрирующие точность данного метода.
+\end{itemize}
 
 \chapter*{Приложение 1. Листинг программы}
 \addcontentsline{toc}{chapter}{Приложение 1. Листинг программы}
